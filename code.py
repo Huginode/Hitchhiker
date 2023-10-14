@@ -9,7 +9,7 @@ X, y = make_blobs(n_samples=100, n_features=2, centers=2, random_state=0)
 y = y.reshape((y.shape[0], 1))
 
 #graph plotting
-plt.scatter(X[:, 0], X[:, 1], c=y, cmap='summer')
+#plt.scatter(X[:, 0], X[:, 1], c=y, cmap='summer')
 
 # def init function
 def init(X):
@@ -30,9 +30,9 @@ def logLoss(A, y):
 
 # def gradient function
 def gradients (A, x, y):
-     dW = 1 / len(y) * np.dot(X.T, A - y)
-     db = 1 / len(y) * np.sum(A - y)
-     return (dW, db)
+    dW = 1 / len(y) * np.dot(X.T, A - y)
+    db = 1 / len(y) * np.sum(A - y)
+    return (dW, db)
 
 # update function
 def update(dW, db, W, b, learningRate):
@@ -48,11 +48,12 @@ def artificialNeuron(X, y, learningRate=0.1, nIter=100):
 
     for i in range(nIter):
         A = model(X, W, b)
-        Loss = loss.append(logLoss(A, y))
+        loss.append(logLoss(A, y))
         dW, db = gradients(A, X, y)
         W, b = update(dW, db, W, b, learningRate)
 
-    plt.plot(Loss)
+    plt.plot(loss)
     plt.show
 
 artificialNeuron(X, y)
+plt.show()
