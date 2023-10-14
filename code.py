@@ -72,6 +72,7 @@ def predict(X, W, b):
 W, b = artificialNeuron(X, y)
 plt.show()
 
+# args to draw the descision line
 x0 = np.linspace(-1, 4 ,100)
 x1 = (-W[0] * x0 -b) / W[1]
 
