@@ -60,6 +60,8 @@ def artificialNeuron(X, y, learningRate=0.1, nIter=100):
     plt.plot(loss)
     plt.show
 
+    return (W, b)
+
 
 # Predicting function
 def predict(X, W, b):
@@ -67,5 +69,13 @@ def predict(X, W, b):
     return A >= 0.5
 
 
-artificialNeuron(X, y)
+W, b = artificialNeuron(X, y)
 plt.show()
+
+x0 = np.linspace(-1, 4 ,100)
+x1 = (-W[0] * x0 -b) / W[1]
+
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap='summer')
+plt.plot(x0, x1, c='orange', lw=3)
+plt.show()
+predict(X, W, b)
