@@ -52,7 +52,7 @@ def artificialNeuron(X, y, learningRate=0.1, nIter=100):
         dW, db = gradients(A, X, y)
         W, b = update(dW, db, W, b, learningRate)
 
-artificialNeuron(X, y)
+    plt.plot(Loss)
+    plt.show
 
-plt.plot(Loss)
-plt.show()
+artificialNeuron(X, y)
