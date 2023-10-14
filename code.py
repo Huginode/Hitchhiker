@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_blobs
+from sklearn.metrics import accuracy_score
 
 # created dataset
 X, y = make_blobs(n_samples=100, n_features=2, centers=2, random_state=0)
@@ -34,6 +35,7 @@ def gradients (A, x, y):
     db = 1 / len(y) * np.sum(A - y)
     return (dW, db)
 
+
 # update function
 def update(dW, db, W, b, learningRate):
     W = W - learningRate * dW
@@ -52,8 +54,18 @@ def artificialNeuron(X, y, learningRate=0.1, nIter=100):
         dW, db = gradients(A, X, y)
         W, b = update(dW, db, W, b, learningRate)
 
+    yPred = predict(X, W, b)
+    print(accuracy_score(y, yPred))
+
     plt.plot(loss)
     plt.show
+
+
+# Predicting function
+def predict(X, W, b):
+    A = model(X, W, b)
+    return A >= 0.5
+
 
 artificialNeuron(X, y)
 plt.show()
